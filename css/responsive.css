@@ -257,3 +257,45 @@ header .navbar-light .navbar-nav {
 	.iq-coming .form-row>.col, .iq-coming .form-row>[class*=col-] { width: 100%; }
 	.iq-coming form .form-control, .iq-coming form .button { width: 100%; border-radius: 10px; text-align: center; }
 }
+
+@media(max-width:600px) {
+	.about-manu li { margin: 0 30px; }
+	#values, #team { margin-bottom: 60px; }
+	.iq-contactbox .contact-bg { padding: 30px 30px; }
+	.banner .banner-text h1 { font-size: 30px; }
+	.banner .banner-text h3 { font-size: 18px; }
+	.round { width: 320px; height: 320px; top: 0; left: 0; }
+	.round, .breadcrumbs-after { display: none; }
+	.contentCircle { top: -200px!important; position: absolute!important; width: 100% !important; }
+	.dotCircle { top: 50%; width: 300px; }
+	.holderCircle { width: 100%; }
+	.banner .banner-text { padding: 120px 0 25px 0; }
+	.breadcrumbs { padding: 200px 0 90px 0; }
+	#partners .col-lg-2.col-md-3.col-sm-4.mt-5 { width: 50%; }
+	.pricing-box .price-blog { padding: 10px 0 !important; }
+	.contentCircle .CirItem { top: 80px; }
+	.works-box .top-img1.i-size { width: 50%; }
+	.top_up{ margin-top: 0; }
+	.youtube{ display: none; }
+	.mt-local-up { margin-top: 0; }
+	.margin_ncsam_top{ margin-top: 110px; }
+	.about_margin_top{ margin-top: 0 }
+	.banner_margin_top { margin-top: 8px !important; }
+}
+
+/*@media (max-width: 600px){*/
+	/*.round, .breadcrumbs-after {*/
+		/*display: none;*/
+	/*}*/
+	/*.round {*/
+		/*width: 320px;*/
+		/*height: 320px;*/
+		/*top: 0;*/
+		/*left: 0;*/
+	/*}*/
+	/*.contentCircle {*/
+		/*top: -120px;*/
+		/*position: absolute;*/
+		/*width: 100%;*/
+	/*}*/
+/*}*/

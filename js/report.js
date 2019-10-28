@@ -1,8 +1,9 @@
  //Saving Contact Us...
 $(document).ready(function () {
-
     // CONTACT US JS
     $("#btnsavecyber").click(function (e) {
+        var btn = $("#btnsaveanonymous");
+        $(btn).buttonLoader('start');
 
         e.preventDefault();
         //declare letiables...
@@ -15,7 +16,7 @@ $(document).ready(function () {
         let email = $("#email").val();
         let message = $("#message").val();
         let category = $("#category").val();
-        
+
 
 
         //check if firstname is not empty...
@@ -85,22 +86,29 @@ $(document).ready(function () {
             alert('Please select category!')
         }
         else{
-            let dataString = 'fullname=' + fullname + '&organisation=' + organisation + '&phone=' + phone +  '&email=' + email + '&category=' + category + '&message=' + message + '&option=form-cyber';
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6Ld0VLkUAAAAADyLeQKH_xtMaSjM6lYL3CeWaU0q', {action: 'homepage'}).then(function(token) {
+                    let dataString = 'fullname=' + fullname + '&organisation=' + organisation + '&phone=' + phone +  '&email=' + email + '&category=' + category + '&message=' + message + '&option=form-cyber';
+                    $('#cyber_incident').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+                    // console.log(dataString)
+                    // AJAX Submitting....
+                    $.ajax({
+                        type: "POST",
+                        url: "process.php?option=form-cyber",
+                        data: dataString,
+                        cache: false,
+                        success: function (result) {
+                            //alert(result);
 
-            // console.log(dataString)
-            // AJAX Submitting....
-            $.ajax({
-                type: "POST",
-                url: "process.php?option=form-cyber",
-                data: dataString,
-                cache: false,
-                success: function (result) {
-                    //alert(result);
-
-                    $("#result").append(result).fadeOut(10000);
-                    $('#name, #organisation, #phone, #email, #category, #message').val('')
-                    $('#cyber_form').modal('hide');
-                }
+                            $("#result").append(result).fadeOut(10000);
+                            $('#name, #organisation, #phone, #email, #category, #message').val('')
+                            $('#cyber_form').modal('hide');
+                        }
+                    });
+                    setTimeout(function () {
+                        $(btn).buttonLoader('stop');
+                    }, 10000);
+                });
             });
         }
         return false;
@@ -108,6 +116,8 @@ $(document).ready(function () {
 
 
     $("#btnsavedata").click(function (e) {
+        var btn = $("#btnsaveanonymous");
+        $(btn).buttonLoader('start');
 
         e.preventDefault();
         //declare letiables...
@@ -188,11 +198,16 @@ $(document).ready(function () {
                     $('#data_form').modal('hide');
                 }
             });
+            setTimeout(function () {
+                $(btn).buttonLoader('stop');
+            }, 10000);
         }
         return false;
     }); //end of the  $("#btnsaveinquiry").click(function ()
 
     $("#btnsavecrime").click(function (e) {
+        var btn = $("#btnsaveanonymous");
+        $(btn).buttonLoader('start');
 
         e.preventDefault();
         //declare letiables...
@@ -287,6 +302,50 @@ $(document).ready(function () {
                     $('#crime_form').modal('hide');
                 }
             });
+            setTimeout(function () {
+                $(btn).buttonLoader('stop');
+            }, 10000);
+        }
+        return false;
+    }); //end of the  $("#btnsaveinquiry").click(function ()
+
+    $("#btnsaveanonymous").click(function (e) {
+        var btn = $("#btnsaveanonymous");
+        $(btn).buttonLoader('start');
+
+        e.preventDefault();
+        //declare letiables...
+        let message = $("#anonymous_message").val();
+        let category = $("#anonymous_category").val();
+
+        if (category == ''){
+            alert('Please select category!')
+        }
+        else{
+            // grecaptcha.ready(function() {
+            //     grecaptcha.execute('6Ld0VLkUAAAAADyLeQKH_xtMaSjM6lYL3CeWaU0q', {action: 'homepage'}).then(function(token) {
+                    let dataString = 'category=' + category + '&message=' + message + '&option=form-anonymous';
+            //         $('#anonymous_incident').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+            //         console.log(dataString)
+                    // AJAX Submitting....
+                    $.ajax({
+                        type: "POST",
+                        url: "process.php?option=form-anonymous",
+                        data: dataString,
+                        cache: false,
+                        success: function (result) {
+                            //alert(result);
+
+                            $("#result").append(result).fadeOut(10000);
+                            $('#category, #message').val('');
+                            $('#anonymous').modal('hide');
+                        }
+                    });
+            setTimeout(function () {
+                $(btn).buttonLoader('stop');
+            }, 10000);
+                // });
+            // });
         }
         return false;
     }); //end of the  $("#btnsaveinquiry").click(function ()

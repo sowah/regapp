@@ -125,8 +125,8 @@ if ($_POST['option'] == 'form-cyber')
 
             $mail = new PHPMailer();
 
-            $senderMail = "eric.badger@cybersecurity.gov.gh";
-            $pwd = "TempPass1@";
+            $senderMail = "incidents@cybersecurity.gov.gh";
+            $pwd = "Cyb@S3c123!";
 
             //   try {
             $mail->IsSMTP();
@@ -281,8 +281,8 @@ if ($_POST['option'] == 'form-cyber')
 </html>';
             $mail = new PHPMailer();
 
-            $senderMail = "eric.badger@cybersecurity.gov.gh";
-            $pwd = "TempPass1@";
+            $senderMail = "incidents@cybersecurity.gov.gh";
+            $pwd = "Cyb@S3c123!";
 
             //   try {
             $mail->IsSMTP();
@@ -452,8 +452,106 @@ if ($_POST['option'] == 'form-cyber')
 
             $mail = new PHPMailer();
 
-            $senderMail = "eric.badger@cybersecurity.gov.gh";
-            $pwd = "TempPass1@";
+            $senderMail = "incidents@cybersecurity.gov.gh";
+            $pwd = "Cyb@S3c123!";
+
+            //   try {
+            $mail->IsSMTP();
+
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'tls'; //tls or ssl
+            // $mail->Host = "ssl://smtp.googlemail.com"; //smtp host address
+            $mail->Host = "smtp.office365.com";
+            $mail->Por0t = 587; //host port -- port: 465 if you using SSL
+
+            $mail->Username = $senderMail; //username or email
+            $mail->Password = $pwd; //password
+
+            $mail->setFrom($senderMail, 'Website Online Form');
+            $mail->addAddress('report@cybersecurity.gov.gh');
+            $mail->addReplyTo('report@cybersecurity.gov.gh');
+
+            $mail->isHTML(true); // Set email format to HTML
+            $mail->Subject = "Online Form Report on Other Crime";
+
+            $mail->Body = $message;
+            if (!$mail->send()) {
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Report successfully sent! We will contact you shortly';
+            }
+        }
+
+
+        else{
+
+            foreach ($error as $key => $values) {
+
+                echo '  "'.$values.'"';
+
+
+            }
+
+        }
+    }
+
+    else if (($_POST['option'] == 'form-anonymous')) {
+        $error = array();//Declare An Array to store any error message
+        $category = trim(strip_tags($_POST['category']));
+        $comment = $_POST['message'];
+
+        if(empty($error))
+        {
+
+
+//            echo "<h3 style='color:#046a88' class=' Proxima_Nova_Bold'>Report successfully sent! We will contact you shortly</h3>";
+            $message = '<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+ <title>National Cyber Security Center | Data Privacy Report</title>
+         <link rel="shortcut icon" href="" />
+         <link rel="stylesheet" type="text/css" href="">
+          <style type="text/css">
+ .wrap{
+    width: 720px;
+    margin: 15px auto;
+    padding: 15px 20px;
+    background: white;
+    border: 2px solid #DBDBDB;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+          </style>
+
+</head>';
+
+            $message = '<body>
+  <div class="wrap">
+       
+<p />
+<center><h3>Criminal Report from Website Online Form</h3></center>
+<p />
+   
+      <table>
+ <tr>
+   <td>
+   <p>
+    Category: '.$category.'<br />
+    Message: '.$comment.' 
+    </p>
+   </td>
+ </tr>
+</table>
+<hr />
+    </div>  
+</body>
+</html>';
+
+            $mail = new PHPMailer();
+
+            $senderMail = "incidents@cybersecurity.gov.gh";
+            $pwd = "Cyb@S3c123!";
 
             //   try {
             $mail->IsSMTP();

@@ -63,7 +63,7 @@ h4 { font-size: 26px; line-height: 1.3em; }
 h5 { font-size: 24px; line-height: 1.3em; }
 h6 { font-size: 22px; line-height: 1.3em; }
 ul { margin: 0px; padding: 0px; }
-hr { margin: 0; padding: 0px; border-bottom: 1px solid #ffffff; display: inline-block; width: 100%; border-top: 0px; }
+hr { margin: 0; padding: 0px; border-bottom: 3px solid #3882b0; display: inline-block; width: 100%; border-top: 0px; }
 
 /*----------------------------------------------------------------------
  Form
@@ -158,7 +158,7 @@ Back to Top
 Loader
 -----------------------------------------------------------------------*/
 #loading { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 9999; }
-#loading img { width: 150px; }
+#loading img { width: 700px; }
 
 /*---------------------------------------------------------------------
 Background overlay color
